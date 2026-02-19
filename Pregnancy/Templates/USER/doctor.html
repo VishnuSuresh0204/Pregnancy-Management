@@ -1,0 +1,49 @@
+{% extends "USER/common.html" %}
+{% block content %}
+  
+
+    <!-- BREADCRUMB STARTS HERE -->
+    <div class="rv-breadcrumb pt-120 pb-120">
+        <div class="container">
+            <h1 class="rv-breadcrumb__title">Doctors</h1>
+
+            <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+                <li><a href=""><i class="fa-solid fa-sharp fa-home"></i> Home</a></li>
+                <li class="current-page"><span class="dvdr"> &#47;</span><span>Doctors</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- BREADCRUMB ENDS HERE -->
+
+
+    <!-- TEAM SECTION START -->
+    <section class="rv-inner-team rv-section-spacing">
+        <div class="container">
+            <div class="rv-inner-team-row" data-aos="fade-up">
+                <div class="row row-cols-lg-3 row-cols-2 row-cols-xxs-1 g-30">
+                    {% for doctor in doct %}
+                    <div class="col">
+                        <div class="rv-9-member rv-inner-member">
+                            {% if doctor.image %}
+                            <div class="rv-9-member__img">
+                                <img src="{{ doctor.image.url }}" alt="Project Image" style="height: 300px;">
+                            </div>
+                            {% endif %}
+                            <div class="rv-9-member__txt">
+                                <br>
+                                <div class="rv-9-member-socials rv-inner-member-socials">
+                                    <a href="/appointment?id={{doctor.id}}" class="btn btn-primary btn-sm mt-2">Book Appointment</a>
+                                </div>
+                                <span class="rv-3-project__sub-title"> <strong>Specialization:</strong>{{ doctor.specialization }}</span>
+                                <h5 class="rv-3-project__title"><a href="#">{{ doctor.name }}</a></h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TEAM SECTION END -->
+    {% endblock %}

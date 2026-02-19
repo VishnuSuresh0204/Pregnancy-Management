@@ -1,0 +1,43 @@
+{% extends "ADMIN/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">Add Baby Song</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/adminHome/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Add Baby Song</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<!-- FORM START -->
+<section class="rv-account-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 auth-container">
+                <h3 class="single-form-title">Upload a Baby Song</h3>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <input type="text" name="title" placeholder="Song Title" required>
+
+                    <textarea name="description" rows="3" placeholder="Short description (optional)"></textarea>
+
+                    <label for="audio_file" class="mt-3">Audio File (MP3/WAV)</label>
+                    <input type="file" name="audio_file" class="mb-3">
+
+                    <input type="url" name="video_url" placeholder="Video URL (YouTube/Vimeo - Optional)" class="mt-3">
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn">Upload Song</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FORM END -->
+
+{% endblock %}

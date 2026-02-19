@@ -1,0 +1,55 @@
+{% extends "ADMIN/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">Add Vaccination Entry</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href=""><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Add Vaccine</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<!-- VACCINE FORM SECTION START -->
+<section class="rv-account-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 auth-container">
+                <h3 class="single-form-title">Add New Vaccine</h3>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <input type="text" name="vaccine_name" placeholder="Vaccine Name" required>
+
+                    <input type="text" name="disease_prevented" placeholder="Disease Prevented" required>
+
+                    <select name="age_group" required>
+                        <option value="">-- Select Age Group --</option>
+                        <option value="newborn">Newborn (0–1 month)</option>
+                        <option value="infant">Infant (2–12 months)</option>
+                        <option value="toddler">Toddler (1–3 years)</option>
+                        <option value="child">Child (4–12 years)</option>
+                        <option value="teen">Teen (13–18 years)</option>
+                        <option value="adult">Adult (18+ years)</option>
+                        <option value="pregnant">Pregnant Women</option>
+                    </select>
+
+                    <input type="text" name="recommended_age" placeholder="Recommended Age (e.g. 6 weeks, 1 year)" required>
+
+                    <input type="text" name="dosage" placeholder="Dosage (e.g. 0.5 ml IM)" required>
+
+                    <textarea name="notes" placeholder="Additional Notes (optional)" rows="3"></textarea>
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn mt-3">Add Vaccine</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- VACCINE FORM SECTION END -->
+
+{% endblock %}

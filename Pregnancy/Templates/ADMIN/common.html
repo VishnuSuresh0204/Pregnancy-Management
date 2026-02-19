@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from codebasket.xyz/template/mindmed-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 21 Mar 2025 04:44:24 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Developed by MD. Rabiul Islam">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMed - Hospital Website template html</title>
+    <link rel="shortcut icon" href="/static/assets/img/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/static/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/all.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/sharp-regular.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/sharp-solid.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="/static/assets/vendor/nice-select/nice-select.css">
+    <link rel="stylesheet" href="/static/assets/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/venobox/venobox.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/DatePicker/jquery-ui.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+
+
+
+</head>
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+
+<body>
+    <!-- ANIMATED CURSOR START -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- ANIMATED CURSOR END -->
+    <div class="rv-28-wrapper">
+
+        <!-- header section start -->
+        <header class="rv-28-header">
+            <div class="rv-28-border-for-top" style="background-color: rgb(53, 52, 52);">
+                <div class="container">
+                    <div class="row">
+                        <div class="rv-28-topbar">
+                            <div class="rv-28-topbar__left">
+                                <div class="rv-28-topbar__email pr-25">
+                                    <span class="me-2 "><i class="fa-sharp fa-regular fa-envelope"></i></span>
+                                    <a href="mailto:example.com">admin@gmail.com</a>
+                                </div>
+                                <div class="rv-28-topbar__location pl-25">
+                                    <span>
+                                        <!-- <i class="fa-sharp fa-light fa-location-dot me-2"></i>245 New York, USA -->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rv-28-topbar__right">
+                                <span>Follow Us:</span>
+                                <div class="rv-28-topbar__socials">
+                                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rv-28-border-for-menu to-be-fixed" style="background-color: rgb(30, 37, 35);">
+                <div class="container">
+                    <div class="row">
+                        <div class="rv-28-menu">
+                            <div class="rv-28-logo">
+                                <a href="">
+                                    <img src="/static/assets/img/2.png" alt="revel logo" style="width: 180px;">
+                                </a>
+                            </div>
+                            <div class="rv-1-header-nav__sidebar">
+                                <div
+                                    class="sidebar-heading d-lg-none d-flex align-items-center justify-content-between">
+                                    <a href="" class="logo-container "><img src="/static/assets/img/logo-white-2.png"
+                                            alt="logo"></a>
+                                    <button class=" rv-1-header-mobile-menu-btn sidebar-close-btn rv-3-def-btn">
+                                        <i class="fa-regular fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="rv-28-menubar rv-1-header__nav">
+                                    <ul class="rv-28-menubar__list">
+                                        <li><a href="/adminHome">Home</a>
+                                        </li>
+                                        <li><a href="#">Views Modules</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/view_user">User Details</a></li>
+                                                <li><a href="/view_doctor">Doctor Details</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="#">Vaccination</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/addVaccine">Add Vaccination</a></li>
+                                                <li><a href="/vaccineList">view Vaccination</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Health Tips</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/addHealthTip">Add Health Tip</a></li>
+                                                <li><a href="/healthTipList">View Health Tips</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Baby Songs</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="/addBabySong">Add Baby Song</a></li>
+                                                <li><a href="/babySongList">View Baby Songs</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="rv-28-menu-BookNow">
+
+                                <a href="/" class="rv-28-book-btn">Logout
+                                    <i class="fa-light fa-angle-right"></i>
+                                </a>
+                                <button class=" rv-3-def-btn rv-1-header-mobile-menu-btn d-lg-none d-inline-block"
+                                    id="rv-1-header-mobile-menu-btn">
+                                    <i class="fa-bars fa-regular"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header section end -->
+        {% block content %}
+
+        {% endblock %}
+
+
+        <!-- Footer section start  -->
+
+        <footer class="rv-28-footer-sec">
+            <div class="container">
+                <div class="row g-md-4 g-5">
+                    <div class="col-xl-3 col-lg-3 col-md-6">
+                        <div class="rv-28-footer__logo wow fadeInUp">
+                            <a href="">
+                                <img src="/static/assets/img/logo-white-2.png" alt="logo">
+                            </a>
+                            <p class="rv-28-logo-text">Morbi pharetra, eros sed euismod pellentesque,<br> nulla risus
+                                lobortis purus, quis maximus.</p>
+                            <a href="tel:+03523565425">
+                                <i class="fa fa-phone text-white "></i> +235 25521 215
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-sm-6  col-6">
+                        <div class="rv-28-footer__links wow fadeInUp" data-wow-delay="0.2s">
+                            <h4 class="links_courses">Department</h4>
+                            <ul class="rv-28-footer__ul">
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Emergency Departments</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Orthopedics</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Neurosciences</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Gastroenterology</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Bariatric Surgery</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-sm-6 col-6">
+                        <div class="rv-28-footer__courses wow fadeInUp" data-wow-delay="0.3s">
+                            <h4 class="links_courses">Helpful links</h4>
+                            <ul class="rv-28-footer__ul">
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Find a Doctor</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Find a Hospital</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Buy Medicine</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Terms of Use</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="contact.html">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="rv-28-footer__newsletter wow fadeInUp" data-wow-delay="0.4s">
+                            <h4 class="links_courses">Newsletter & SignUp</h4>
+                            <div class="footer_newsletter">
+
+                            </div>
+                            <div class="follow-us">
+                                <h6 class="text-white ">Follow Us</h6>
+                                <div class="follow-us-ul d-flex align-items-center">
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="rv-28-small-footer wow fadeInUp" data-wow-delay="0.45s">
+                        <div class="copyright">
+                            @ <a href="#">CodeBasket</a>. All Rights Reserved by the site
+                        </div>
+                        <div class="privacy-policy">
+                            <a href="contact.html">Privacy Policy</a> | <a href="contact.html">Terms of Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rv-28-footer__shape1">
+                <img src="/static/assets/img/rv-shape-shape1.png" alt="shape">
+            </div>
+
+            <div class="rv-28-footer__shape3">
+                <img src="/static/assets/img/rv-26-shape-3.png" alt="shape">
+            </div>
+        </footer>
+
+        <!-- Footer section end  -->
+
+
+    </div>
+
+
+    <!-- JS FILES -->
+    <script src="/static/assets/vendor/jquery/jquery-3.6.3.min.js"></script>
+    <script src="/static/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/assets/vendor/syotimer/jquery.syotimer.min.js"></script>
+    <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/assets/vendor/aos/aos.js"></script>
+    <script src="/static/assets/vendor/animate/wow.min.js"></script>
+    <script src="/static/assets/vendor/Scroolreveal/scrollreveal.min.js"></script>
+    <script src="/static/assets/vendor/fslightbox/fslightbox.js"></script>
+    <script src="/static/assets/vendor/mixitup/mixitup.min.js"></script>
+    <script src="/static/assets/vendor/gsap/gsap.min.js"></script>
+    <script src="/static/assets/vendor/gsap/gsap-scroll-trigger.min.js"></script>
+    <script src="/static/assets/vendor/split-type/split-type-0.3.3.min.js"></script>
+    <script src="/static/assets/vendor/anime/anime.min.js"></script>
+    <script src="/static/assets/vendor/noui-slider/nouislider.min.js"></script>
+    <script src="/static/assets/vendor/nice-select/jquery.nice-select.min.js"></script>
+    <script src="/static/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="/static/assets/js/jquery-ui.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/assets/js/rv-medical.js"></script>
+</body>
+
+
+<!-- Mirrored from codebasket.xyz/template/mindmed-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 21 Mar 2025 04:45:09 GMT -->
+
+</html>

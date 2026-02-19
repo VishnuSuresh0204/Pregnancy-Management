@@ -1,0 +1,77 @@
+{% extends "common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">Doctor Registration</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li>
+                <a href="/"><i class="fa-solid fa-home"></i> Home</a>
+            </li>
+            <li class="current-page">
+                <span class="dvdr"> / </span><span>Doctor Register</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<!-- REGISTRATION FORM -->
+<section class="rv-account-form-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 auth-container">
+                <h3 class="single-form-title text-center mb-4">Register as a Doctor</h3>
+
+                <form method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    <input type="text" name="name" placeholder="Full Name" required>
+
+                    <input type="text" name="phone" placeholder="Phone Number"
+                           pattern="[0-9]{10}" maxlength="10"
+                           title="Enter a valid 10-digit phone number" required>
+
+                    <input type="email" name="email" placeholder="Email Address" required>
+
+                    <input type="number" name="age" placeholder="Age"
+                           min="22" max="80" required>
+
+                    <select name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">Other</option>
+                    </select>
+
+                    <input type="text" name="specialization" placeholder="Specialization" required>
+
+                    <input type="number" name="experience_years" placeholder="Years of Experience"
+                           min="0" max="60" required>
+
+                    <textarea name="address" placeholder="Clinic / Home Address" rows="3" required></textarea>
+
+                    <input type="password" name="password" placeholder="Password" minlength="6" required>
+
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" minlength="6" required>
+
+                    <label class="mt-2">Profile Image (optional)</label>
+                    <input type="file" name="image" accept="image/*">
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn w-100 mt-3">
+                        Register
+                    </button>
+                </form>
+
+                <p class="text-center mt-3">
+                    Already registered?
+                    <a href="/login/" class="text-primary fw-semibold">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- REGISTRATION FORM END -->
+
+{% endblock %}

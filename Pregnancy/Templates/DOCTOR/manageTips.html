@@ -1,0 +1,45 @@
+{% extends "DOCTOR/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">My Tips</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/doctorHome/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Manage Tips</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="rv-2-blog-section pt-120 pb-120">
+    <div class="container">
+        <div class="row g-4">
+            {% for tip in tips %}
+            <div class="col-lg-4 col-md-6">
+                <div class="rv-2-blog">
+                    <div class="rv-2-blog__img">
+                        {% if tip.image %}
+                        <img src="{{ tip.image.url }}" alt="{{ tip.title }}"
+                            style="height: 250px; width: 100%; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    <div class="rv-2-blog__content">
+                        <span class="rv-2-blog__date">{{ tip.category|title }}</span>
+                        <h4 class="rv-2-blog__title">{{ tip.title }}</h4>
+                        <div class="rv-2-blog__bottom">
+                            <a href="/doctorEditTip?id={{ tip.id }}" class="rv-2-blog__btn" style="color: blue;"><i
+                                    class="fa-solid fa-edit"></i> Edit</a>
+                            <a href="/doctorDeleteTip?id={{ tip.id }}" class="rv-2-blog__btn"
+                                style="color: red; margin-left: 20px;"><i class="fa-solid fa-trash"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

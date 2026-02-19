@@ -1,0 +1,52 @@
+{% extends "common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">Login</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li>
+                <a href="/"><i class="fa-solid fa-home"></i> Home</a>
+            </li>
+            <li class="current-page">
+                <span class="dvdr"> / </span><span>Login</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<!-- LOGIN SECTION -->
+<section class="rv-account-form-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 auth-container">
+                <h3 class="single-form-title text-center mb-4">Welcome Back</h3>
+
+                <form method="POST" novalidate>
+                    {% csrf_token %}
+
+                    <input type="email" name="email" placeholder="Email Address" required>
+
+                    <input type="password" name="password" placeholder="Password" required>
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn w-100">
+                        Login
+                    </button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <p class="mb-1">
+                        Don’t have an account?
+                    </p>
+                    <a href="/user_reg/" class="text-primary fw-semibold">Register as User</a> |
+                    <a href="/doctor_reg/" class="text-primary fw-semibold">Register as Doctor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- LOGIN SECTION END -->
+
+{% endblock %}

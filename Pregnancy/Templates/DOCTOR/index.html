@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from codebasket.xyz/template/mindmed-html/index-medical.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 21 Mar 2025 04:46:01 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Developed by MD. Rabiul Islam">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMed - Medical Website HTML Template</title>
+    <link rel="shortcut icon" href="/static/assets/img/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/static/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/all.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/sharp-regular.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/sharp-solid.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="/static/assets/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/nice-select/nice-select.css">
+    <link rel="stylesheet" href="/static/assets/vendor/venobox/venobox.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/DatePicker/jquery-ui.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+
+
+</head>
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+<body class="pt-0 pe-0">
+    <!-- ANIMATED CURSOR START -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <!-- ANIMATED CURSOR END -->
+    <div class="rv-26-wrapper">
+
+        <!-- header section start -->
+
+        <header class="rv-26-header to-be-fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="rv-26-menu-bar ">
+                        <div class="rv-26-logo">
+                            <a href="">
+                                <img src="/static/assets/img/2.png" alt="revel logo" style="width: 180px;">
+                            </a>
+                        </div>
+                        <div class="rv-1-header-nav__sidebar">
+                            <div class="sidebar-heading d-lg-none d-flex align-items-center justify-content-between">
+                                <a href="" class="logo-container "><img src="/static/assets/img/logo-black-3.png"
+                                        alt="logo"></a>
+                                <button class=" rv-1-header-mobile-menu-btn sidebar-close-btn rv-3-def-btn">
+                                    <i class="fa-regular fa-xmark"></i>
+                                </button>
+                            </div>
+                            <div class="rv-26-menu rv-1-header__nav ">
+                                <ul class="rv-26-menu-list" style="margin-left: 200px;">
+                                    <li><a href="/doctorHome">Home</a></li>
+                                    <li><a href="/userList">User List</a></li>
+                                    <li><a href="/appointmentDetails">Appointments</a></li>
+                                    <li><a href="#">Manage Tips</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/doctorAddTip">Add New Tip</a></li>
+                                            <li><a href="/doctorManageTips">My Tips</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/doctorProfile/">Profile</a></li>
+                                    <li><a href="/">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+        <!-- banner section start -->
+        <section class="rv-26-banner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="rv-26-header-bg-img position-relative">
+                        <img src="/static/assets/img/rv-26-header-img.jpg" alt="banner img" class="w-100">
+
+                        <div class="rv-26-header-content">
+                            <div class="container">
+                                <div class="rv-26-header-feature">
+                                    <p class="rv-26-header-feature__premium ">Premium Care</p>
+                                    <h1 class="rv-26-header-feature__headline rv-text-anime">Healthcare Devices & <br>
+                                        Provisions</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="rv-26-header-shape">
+                    <div class="rv-26-header-shape__1">
+                        <img src="/static/assets/img/rv-shape-shape1.png" alt="shape">
+                    </div>
+                    <div class="rv-26-header-shape__2">
+                        <img src="/static/assets/img/rv-26-shape-2.png" alt="shape">
+                    </div>
+                    <div class="rv-26-header-shape__3">
+                        <img src="/static/assets/img/rv-26-shape-3.png" alt="shape">
+                    </div>
+                </div>
+            </div>
+           
+        </section>
+        <!-- banner section end -->
+
+        <!-- about section start -->
+        <section class="rv-26-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="rv-26-about__img">
+                            <img src="/static/assets/img/rv-26-about-img.png" alt="doctor">
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="rv-26-about__content">
+                            <div id="rv-26-about-corousel">
+                                <div class="rv-26-about__content-header ">
+                                    <span class="rv-26-about__premium">Premium Care</span>
+                                    <div class="rv-26-about__title">
+                                        <h2 class="">Humanistics and <br> Evidence-Based Madecal <br> Services
+                                        </h2>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class=" rv-26-carousel-indicator"></div>
+                            <div class="rv-26-about-swiper-container swiper-container">
+                                <div class=" swiper-wrapper rv-26-about-card-area ">
+                                    <div class="swiper-slide">
+                                        <div class="rv-26-about-card card ">
+                                            <div class="rv-26-about-card__mask">
+                                                <i class="fa-light fa-mask-face"></i>
+                                            </div>
+                                            <div class="rv-26-about-card__subtitle">
+                                                
+                                            </div>
+                                            <div class="rv-26-about-card__details">
+                                                <p>There are many variations passages
+                                                    sem rhonchus available.!</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="rv-26-about-card card ">
+                                            <div class="rv-26-about-card__mask">
+                                                <i class="fa-light fa-suitcase-medical"></i>
+                                            </div>
+                                            <div class="rv-26-about-card__subtitle">
+                                                <!-- <a href="service-details.html">
+                                                    <h6>Inpatient Services</h6>
+                                                </a> -->
+                                            </div>
+                                            <div class="rv-26-about-card__details">
+                                                <p>There are many variations passages
+                                                    sem rhonchus available.!</p>
+                                            </div>
+                                            <!-- <a href="service-details.html" class="rv-26-about-card__readMore">
+                                                Read More
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </a> -->
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="rv-26-about-card card ">
+                                            <div class="rv-26-about-card__mask">
+                                                <i class="fa-light fa-mask-face"></i>
+                                            </div>
+                                            <div class="rv-26-about-card__subtitle">
+                                                <a href="service-details.html">
+                                                    <h6>Infection Prevention</h6>
+                                                </a>
+                                            </div>
+                                            <div class="rv-26-about-card__details">
+                                                <p>There are many variations passages
+                                                    sem rhonchus available.!</p>
+                                            </div>
+                                            <!-- <a href="service-details.html" class="rv-26-about-card__readMore">
+                                                Read More
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About section end -->
+
+        <!-- Video section start -->
+
+        <section class="rv-26-video ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 p-0 m-0  ">
+                        <div class="rv-26-video-title" id="rv-26-tab-btn-1">
+                            <div class="rv-26-video-title__icon">
+                                <img src="/static/assets/img/rv-26-heart.png" alt="heart-icon">
+                            </div>
+                            <div class="rv-26-video-title__text d-flex ">
+                                <h6 class="">Diagnosis & Treatment Heart <br> The Disorders .</h6>
+                            </div>
+                            <a href="#" class="rv-26-video-title__btn">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-0 m-0 ">
+                        <div class="rv-26-video-title" id="rv-26-tab-btn-2">
+                            <div class="rv-26-video-title__icon">
+                                <img src="/static/assets/img/rv-26-brain.png" alt="brain-icon">
+                            </div>
+                            <div class="rv-26-video-title__text d-flex ">
+                                <h6 class="">Magnetic Resonance Imaging <br>(MRI) Assessment.</h6>
+                            </div>
+                            <a href="#" class="rv-26-video-title__btn">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rv-26-video-img-tab-container">
+                <div class="rv-26-video-img-tabs active" id="rv-26-tab-pane-1">
+                    <img src="/static/assets/img/rv-26-video-img.jpg" alt="doctor explain video">
+                    <a class="video__btn rv-26-video-btn" data-autoplay="true" data-vbtype="video" data-maxwidth="800px"
+                        href="https://www.youtube.com/embed/KjpuOGDx_4E?si=fNVd64KesOcBrkRn">
+                        <i class="fa-solid fa-play"></i>
+                    </a>
+                </div>
+                <div class="rv-26-video-img-tabs" id="rv-26-tab-pane-2">
+                    <img src="/static/assets/img/video-bg.jpg" alt="doctor explain video">
+
+                    <a class="video__btn rv-26-video-btn" data-autoplay="true" data-vbtype="video" data-maxwidth="800px"
+                        href="https://www.youtube.com/embed/KjpuOGDx_4E?si=fNVd64KesOcBrkRn">
+                        <i class="fa-solid fa-play"></i>
+                    </a>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Video section end  -->
+
+
+
+        <!-- Footer section start  -->
+        <footer class="rv-28-footer-sec rv-26-footer ">
+            <div class="container">
+                <div class="row  g-4">
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="rv-28-footer__logo wow fadeInUp">
+                            <a href="">
+                                <img src="/static/assets/img/logo-white-2.png" alt="logo">
+                            </a>
+                            <p class="rv-26-logo-text">Morbi pharetra, eros sed euismod <br>pellentesque, nulla risus
+                                lobortis<br> purus, quis maximus.</p>
+                            <a href="tel:+03523565425">
+                                <i class="fa fa-phone text-white "></i> +235 25521 215
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-sm-6  col-6">
+                        <div class="rv-28-footer__links wow fadeInUp" data-wow-delay="0.25s">
+                            <h4 class="links_courses">Department</h4>
+                            <ul class="rv-28-footer__ul">
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="">About Us</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="">Terms of Uses</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="services.html">Services</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="contact.html">Contact Us</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Cookies Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-sm-6 col-6">
+                        <div class="rv-28-footer__courses wow fadeInUp" data-wow-delay="0.4s">
+                            <h4 class="links_courses">Helpful links</h4>
+                            <ul class="rv-28-footer__ul">
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="contact.html">Contact Us</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Our Process</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">FAQ</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="#">Depertments</a>
+                                </li>
+                                <li><i class="fa-light fa-angle-right"></i>
+                                    <a href="team.html">Members</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="rv-28-footer__newsletter wow fadeInUp" data-wow-delay="0.55s">
+                            <h4 class="links_courses">Newsletter & SignUp</h4>
+                            <div class="footer_newsletter">
+                                <form action="#" class="d-flex">
+                                    <input type="email" required placeholder="Your Email here">
+                                    <button class="footer_newsletter-btn">
+                                        <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="follow-us">
+                                <h6 class="text-white ">Follow Us</h6>
+                                <div class="follow-us-ul d-flex align-items-center">
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="rv-28-small-footer wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="copyright">
+                            @ <a href="#">CodeBasket</a>. All Rights Reserved by the site
+                        </div>
+                        <div class="privacy-policy">
+                            <a href="">Privacy Policy</a> | <a href="contact.html">Terms of Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rv-28-footer__shape1">
+                <img src="/static/assets/img/rv-shape-shape1.png" alt="shape">
+            </div>
+
+            <div class="rv-28-footer__shape3">
+                <img src="/static/assets/img/rv-26-shape-3.png" alt="shape">
+            </div>
+        </footer>
+        <!-- Footer section end  -->
+
+    </div>
+
+
+    <!-- JS FILES -->
+    <script src="/static/assets/vendor/jquery/jquery-3.6.3.min.js"></script>
+    <script src="/static/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/assets/vendor/syotimer/jquery.syotimer.min.js"></script>
+    <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/assets/vendor/aos/aos.js"></script>
+    <script src="/static/assets/vendor/animate/wow.min.js"></script>
+    <script src="/static/assets/vendor/Scroolreveal/scrollreveal.min.js"></script>
+    <script src="/static/assets/vendor/fslightbox/fslightbox.js"></script>
+    <script src="/static/assets/vendor/mixitup/mixitup.min.js"></script>
+    <script src="/static/assets/vendor/gsap/gsap.min.js"></script>
+    <script src="/static/assets/vendor/gsap/gsap-scroll-trigger.min.js"></script>
+    <script src="/static/assets/vendor/split-type/split-type-0.3.3.min.js"></script>
+    <script src="/static/assets/vendor/anime/anime.min.js"></script>
+    <script src="/static/assets/vendor/noui-slider/nouislider.min.js"></script>
+    <script src="/static/assets/vendor/nice-select/jquery.nice-select.min.js"></script>
+    <script src="/static/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="/static/assets/js/jquery-ui.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/assets/js/rv-medical.js"></script>
+</body>
+
+
+<!-- Mirrored from codebasket.xyz/template/mindmed-html/index-medical.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 21 Mar 2025 04:46:19 GMT -->
+</html>

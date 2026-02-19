@@ -1,0 +1,43 @@
+{% extends "DOCTOR/common.html" %}
+{% block content %}
+
+<!-- Bootstrap and Font Awesome -->
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">Users List</h2>
+    <div class="row">
+        {% for i in users %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100 border-0">
+                    <div class="card-body"> 
+                        <h5 class="card-title text-primary">
+                            <i class="fas fa-user me-2"></i>{{ i.first_name }} {{ i.last_name }}
+                        </h5>
+                        <p class="card-text">
+                            <i class="fas fa-envelope me-2 text-secondary"></i><strong>Email:</strong> {{ i.email }}<br>
+                            <i class="fas fa-phone me-2 text-secondary"></i><strong>Phone:</strong> {{ i.contact }}<br>
+                            <i class="fas fa-map-marker-alt me-2 text-secondary"></i><strong>Address:</strong> {{ i.address }}<br>
+                            <p class="mt-2">
+                                <span class="badge 
+                                    {% if i.status == 'Approved' %} bg-success
+                                    {% elif i.status == 'Rejected' %} bg-danger
+                                    {% else %} bg-secondary {% endif %}">
+                                    {{ i.status }}
+                                </span>
+                            </p>
+                            
+                        </p>
+                    </div>
+                   
+                    
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p>No users found.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

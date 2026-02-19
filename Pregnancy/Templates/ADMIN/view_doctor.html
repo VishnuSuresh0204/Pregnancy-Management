@@ -1,0 +1,55 @@
+{% extends "ADMIN/common.html" %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Doctors</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Doctor List</h2>
+    <div class="row">
+        {% for doctor in doct %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if doctor.image %}
+                <img src="{{ doctor.image.url }}" class="card-img-top" alt="Doctor Image" style="height: 250px; object-fit: cover;">
+                {% else %}
+                <img src="https://via.placeholder.com/250x250?text=No+Image" class="card-img-top" alt="No Image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ doctor.name }}</h5>
+                    <p class="card-text">
+                        <strong>Email:</strong> {{ doctor.email }}<br>
+                        <strong>Phone:</strong> {{ doctor.phone }}<br>
+                        <strong>Gender:</strong> {{ doctor.gender }}<br>
+                        <strong>Age:</strong> {{ doctor.age }}<br>
+                        <strong>Specialization:</strong> {{ doctor.specialization }}<br>
+                        <strong>Experience:</strong> {{ doctor.experience_years }} years<br>
+                        <strong>Status:</strong> {{ doctor.status|title }}<br>
+                        <strong>Address:</strong> {{ doctor.address }}
+                    </p>
+                </div>
+                <div class="card-footer bg-white border-0 d-flex justify-content-between px-3 pb-3">
+                    {%if i.status == "doctorApprove" %}
+                    <td><a href="/admin_action?id={{doctor.id}}&action=doctorBlock"><button class="btn btn-outline-danger">Block</button></a></td>
+                    {%else%}
+                    <td><a href="/admin_action?id={{doctor.id}}&action=doctorApprove"><button class="btn btn-outline-success">Approve</button></a></td>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No doctors found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

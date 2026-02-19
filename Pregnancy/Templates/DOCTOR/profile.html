@@ -1,0 +1,74 @@
+{% extends "DOCTOR/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">My Profile</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/doctorHome/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Profile</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="rv-Service-details-section pt-120 pb-120">
+    <div class="container">
+        <div class="row items-gap-40">
+            <div class="col-lg-4 col-md-5">
+                <div class="rv-service-details__sidebar">
+                    <div class="rv-service-details__services-box align-content-center text-center">
+                        {% if doctor.image %}
+                        <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}"
+                            style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px;">
+                        {% else %}
+                        <img src="/static/assets/img/user.png" alt="default user"
+                            style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px;">
+                        {% endif %}
+                        <h4 class="rv-service-details__title">{{ doctor.name }}</h4>
+                        <p>{{ doctor.specialization }}</p>
+                        <a href="/doctorUpdateProfile/" class="rv-1-banner-btn mt-4">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <div class="rv-service-details__content">
+                    <h3 class="rv-service-details__title">Personal Information</h3>
+                    <div class="rv-service-details__text mt-30">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" width="200">Email :</th>
+                                    <td>{{ doctor.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone :</th>
+                                    <td>{{ doctor.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Age :</th>
+                                    <td>{{ doctor.age }} Years</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Experience :</th>
+                                    <td>{{ doctor.experience_years }} Years</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Gender :</th>
+                                    <td>{{ doctor.gender }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address :</th>
+                                    <td>{{ doctor.address }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

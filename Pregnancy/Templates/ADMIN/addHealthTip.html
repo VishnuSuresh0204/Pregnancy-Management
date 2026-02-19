@@ -1,0 +1,41 @@
+{% extends "ADMIN/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">Add Health Tip</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/adminHome/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Add Health Tip</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<!-- FORM START -->
+<section class="rv-account-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 auth-container">
+                <h3 class="single-form-title">Submit a Health Tip</h3>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <input type="text" name="title" placeholder="Title" required>
+
+                    <textarea name="content" rows="4" placeholder="Write your health tip here..." required></textarea>
+
+                    <label for="image" class="mt-3">Tip Image (Optional)</label>
+                    <input type="file" name="image" class="mb-3">
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn">Submit Health Tip</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FORM END -->
+
+{% endblock %}

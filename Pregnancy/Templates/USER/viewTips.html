@@ -1,0 +1,107 @@
+{% extends "USER/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">{{ category|title }} Tips</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li>
+                <a href="/userHome/">
+                    <i class="fa-solid fa-home"></i> Home
+                </a>
+            </li>
+            <li class="current-page">
+                <span class="dvdr"> &#47;</span>
+                <span>{{ category|title }}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="rv-2-blog-section pt-120 pb-120">
+    <div class="container">
+        <!-- Category Filter Start -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="rv-2-blog__filter d-flex flex-wrap justify-content-center gap-3">
+                    <a href="/userViewTips?category=all"
+                        class="rv-28-book-btn {% if category == 'all' %}active{% endif %}"
+                        style="padding: 10px 20px;">All</a>
+                    <a href="/userViewTips?category=health"
+                        class="rv-28-book-btn {% if category == 'health' %}active{% endif %}"
+                        style="padding: 10px 20px;">Health</a>
+                    <a href="/userViewTips?category=pregnancy"
+                        class="rv-28-book-btn {% if category == 'pregnancy' %}active{% endif %}"
+                        style="padding: 10px 20px;">Pregnancy</a>
+                    <a href="/userViewTips?category=parenting"
+                        class="rv-28-book-btn {% if category == 'parenting' %}active{% endif %}"
+                        style="padding: 10px 20px;">Parenting</a>
+                    <a href="/userViewTips?category=exercise"
+                        class="rv-28-book-btn {% if category == 'exercise' %}active{% endif %}"
+                        style="padding: 10px 20px;">Exercise</a>
+                    <a href="/userViewTips?category=doctor"
+                        class="rv-28-book-btn {% if category == 'doctor' %}active{% endif %}"
+                        style="padding: 10px 20px;">Doctor's Advice</a>
+                </div>
+            </div>
+        </div>
+        <!-- Category Filter End -->
+
+        <div class="row g-4">
+
+            {% for tip in tips %}
+            <div class="col-lg-4 col-md-6">
+                <div class="rv-2-blog">
+
+                    <div class="rv-2-blog__img">
+                        {% if tip.image %}
+                        <img src="{{ tip.image.url }}" alt="{{ tip.title }}"
+                            style="height: 250px; width: 100%; object-fit: cover;">
+                        {% else %}
+                        <img src="/static/assets/img/rv-1-blog-1.jpg" alt="No image"
+                            style="height: 250px; width: 100%; object-fit: cover;">
+                        {% endif %}
+                    </div>
+
+                    <div class="rv-2-blog__content">
+                        <span class="rv-2-blog__date">
+                            {{ tip.created_at|date:"M d, Y" }}
+                        </span>
+
+                        <h4 class="rv-2-blog__title">
+                            {{ tip.title }}
+                        </h4>
+
+                        <p class="rv-2-blog__text">
+                            {{ tip.content }}
+                        </p>
+
+                        <div class="rv-2-blog__bottom">
+                            <span class="rv-2-blog__author">
+                                By:
+                                {% if tip.is_admin_authored %}
+                                Admin
+                                {% else %}
+                                Dr. {{ tip.author_doctor.name }}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% empty %}
+            <div class="col-12 text-center">
+                <h3>No tips available in this category yet.</h3>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

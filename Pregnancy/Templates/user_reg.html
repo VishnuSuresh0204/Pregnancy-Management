@@ -1,0 +1,61 @@
+{% extends "common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">User Registration</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li>
+                <a href="/"><i class="fa-solid fa-sharp fa-home"></i> Home</a>
+            </li>
+            <li class="current-page">
+                <span class="dvdr"> / </span><span>Register</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<!-- REGISTER SECTION -->
+<section class="rv-account-form-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 auth-container">
+                <h3 class="single-form-title text-center mb-4">Create Account</h3>
+
+                <form method="POST" novalidate>
+                    {% csrf_token %}
+
+                    <input type="text" name="fname" placeholder="First Name" required>
+
+                    <input type="text" name="lname" placeholder="Last Name" required>
+
+                    <input type="text" name="phone" placeholder="Phone Number"
+                           pattern="[0-9]{10}" maxlength="10"
+                           title="Enter a valid 10-digit phone number" required>
+
+                    <input type="email" name="email" placeholder="Email Address" required>
+
+                    <textarea name="address" placeholder="Address" rows="3" required></textarea>
+
+                    <input type="password" name="password" placeholder="Password" minlength="6" required>
+
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" minlength="6" required>
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn w-100 mt-3">
+                        Register
+                    </button>
+                </form>
+
+                <p class="text-center mt-3">
+                    Already have an account?
+                    <a href="/login/" class="text-primary fw-semibold">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- REGISTER SECTION END -->
+
+{% endblock %}

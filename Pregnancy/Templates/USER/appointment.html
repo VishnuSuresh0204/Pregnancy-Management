@@ -1,0 +1,40 @@
+{% extends "USER/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB STARTS HERE -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">Book Appointment</h1>
+
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href=""><i class="fa-solid fa-sharp fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Book</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB ENDS HERE -->
+
+<!-- APPOINTMENT FORM SECTION START -->
+<section class="rv-account-form-section">
+    <div class="container" style="opacity: 1; transform: none;">
+        <div class="row justify-content-center">
+            <div class="col-12 auth-container">
+                <h3 class="single-form-title">Book Appointment with Dr. {{ doctor.name }}</h3>
+                <h6 class="single-form-title">specialization :{{ doctor.specialization }}</h6>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <h5><strong>Name:</strong>{{ logId.first_name }}</h5>
+                    <input type="date" name="date" required>
+                    <input type="time" name="time" required>
+                    <textarea name="reason" placeholder="Reason for visit" rows="4" required></textarea>
+                    <button type="submit" class="rv-1-banner-btn single-form-btn">Book Appointment</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- APPOINTMENT FORM SECTION END -->
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "DOCTOR/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">Edit Profile</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/doctorHome/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li><a href="/doctorProfile/">Profile</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Edit</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="rv-account-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 auth-container">
+                <div class="rv-service-details__services-box"
+                    style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+                    <h3 class="single-form-title text-center mb-4">Update Profile Info</h3>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="name" value="{{ doctor.name }}" class="form-control" required
+                                    style="border: 1px solid #eee; padding: 12px;">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" name="phone" value="{{ doctor.phone }}" class="form-control" required
+                                    style="border: 1px solid #eee; padding: 12px;">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Age</label>
+                                <input type="number" name="age" value="{{ doctor.age }}" class="form-control" required
+                                    style="border: 1px solid #eee; padding: 12px;">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Specialization</label>
+                                <input type="text" name="specialization" value="{{ doctor.specialization }}"
+                                    class="form-control" required style="border: 1px solid #eee; padding: 12px;">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Experience (Years)</label>
+                                <input type="number" name="experience_years" value="{{ doctor.experience_years }}"
+                                    class="form-control" required style="border: 1px solid #eee; padding: 12px;">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Profile Image (Optional)</label>
+                                <input type="file" name="image" class="form-control"
+                                    style="border: 1px solid #eee; padding: 12px;">
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Address</label>
+                                <textarea name="address" rows="3" class="form-control" required
+                                    style="border: 1px solid #eee; padding: 12px;">{{ doctor.address }}</textarea>
+                            </div>
+
+                            <div class="col-12 text-center mt-3">
+                                <button type="submit" class="rv-1-banner-btn single-form-btn">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

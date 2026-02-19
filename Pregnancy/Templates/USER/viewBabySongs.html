@@ -1,0 +1,54 @@
+{% extends "USER/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <h1 class="rv-breadcrumb__title">Baby Songs</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/userHome/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li class="current-page"><span class="dvdr"> &#47;</span><span>Baby Songs</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="rv-2-blog-section pt-120 pb-120">
+    <div class="container">
+        <div class="row g-4">
+            {% for song in songs %}
+            <div class="col-lg-4 col-md-6">
+                <div class="rv-2-blog">
+                    <div class="rv-2-blog__content">
+                        <h4 class="rv-2-blog__title">{{ song.title }}</h4>
+                        <p class="rv-2-blog__text">{{ song.description }}</p>
+
+                        {% if song.audio_file %}
+                        <div class="audio-player-container mb-3">
+                            <audio controls class="w-100">
+                                <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        {% endif %}
+
+                        {% if song.video_url %}
+                        <div class="mt-2">
+                            <a href="{{ song.video_url }}" target="_blank" class="rv-28-book-btn w-100 text-center">
+                                <i class="fa-solid fa-play"></i> Watch Video
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <h3>No baby songs uploaded yet.</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
