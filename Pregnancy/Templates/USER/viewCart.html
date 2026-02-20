@@ -1,0 +1,161 @@
+{% extends "USER/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">Your Shopping Cart</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/userHome">Home</a></li>
+            <li class="current-page"><span class="dvdr"> / </span><span>Cart</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5 rv-28-cart-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="table-responsive rounded border border-secondary">
+                    <table class="table table-dark table-hover align-middle mb-0">
+                        <thead class="bg-secondary text-primary">
+                            <tr>
+                                <th class="ps-4">Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                                <th class="text-end pe-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                            <tr class="border-secondary">
+                                <td class="ps-4 py-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        {% if item.product.image %}
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                            class="rounded"
+                                            style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #444;">
+                                        {% else %}
+                                        <div class="rounded bg-secondary d-flex align-items-center justify-content-center"
+                                            style="width: 60px; height: 60px;">
+                                            <i class="fa-light fa-image text-white-50"></i>
+                                        </div>
+                                        {% endif %}
+                                        <div>
+                                            <h6 class="mb-0 text-white">{{ item.product.name }}</h6>
+                                            <small class="text-white-50">SKU: #{{ item.product.id }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>₹{{ item.product.price }}</td>
+                                <td>
+                                    <form action="/updateCartQuantity/" method="POST"
+                                        class="d-flex align-items-center bg-secondary rounded px-2"
+                                        style="max-width: 140px;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="cart_id" value="{{ item.id }}">
+                                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1"
+                                            max="{{ item.product.stock }}"
+                                            class="form-control form-control-sm bg-transparent border-0 text-white text-center"
+                                            required style="width: 50px;">
+                                        <button type="submit" class="btn btn-sm text-primary p-1 ms-1 hover-rotate">
+                                            <i class="fa-solid fa-arrows-rotate"></i>
+                                        </button>
+                                    </form>
+                                    {% if item.product.stock < 10 %} <small class="text-warning small block mt-1">Only
+                                        {{ item.product.stock }} left</small>
+                                        {% endif %}
+                                </td>
+                                <td class="fw-bold text-primary">₹{{ item.subtotal }}</td>
+                                <td class="text-end pe-4">
+                                    <a href="/removeFromCart/?id={{ item.id }}" class="text-danger hover-grow"
+                                        onclick="return confirm('Remove this item from your cart?')">
+                                        <i class="fa-light fa-trash-can fa-lg"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center py-5">
+                                    <div class="mb-3">
+                                        <i class="fa-light fa-cart-shopping fa-4x text-white-50"></i>
+                                    </div>
+                                    <h4 class="text-white">Your cart is empty</h4>
+                                    <p class="text-white-50">Looks like you haven't added anything to your cart yet.</p>
+                                    <a href="/viewShops/" class="rv-28-book-btn mt-3">Start Shopping</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {% if cart_items %}
+            <div class="col-lg-4">
+                <div class="rv-28-cart-summary bg-dark border border-secondary rounded p-4 shadow-lg sticky-top"
+                    style="top: 100px;">
+                    <h3 class="h4 text-white mb-4">Order Summary</h3>
+                    <div class="summary-details mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Total Items:</span>
+                            <span class="text-white fw-bold">{{ total_items }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Subtotal:</span>
+                            <span class="text-white fw-bold">₹{{ total_amount }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Shipping:</span>
+                            <span class="text-success small">FREE</span>
+                        </div>
+                    </div>
+                    <hr class="border-secondary mb-4">
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="h4 text-white mb-0">Total Amount:</span>
+                        <span class="h4 text-primary mb-0">₹{{ total_amount }}</span>
+                    </div>
+
+                    <div class="security-badges d-flex gap-3 mb-4 small text-white-50">
+                        <div class="d-flex align-items-center gap-1">
+                            <i class="fa-light fa-shield-check text-success"></i> Secure
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <i class="fa-light fa-truck-fast text-primary"></i> Fast Delivery
+                        </div>
+                    </div>
+
+                    <a href="/checkout/" class="rv-28-book-btn w-100 text-center py-3">
+                        Proceed to Payment <i class="fa-light fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .hover-rotate:hover i {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+
+    .hover-grow:hover {
+        transform: scale(1.2);
+        transition: transform 0.2s ease;
+        display: inline-block;
+    }
+
+    .rv-28-cart-summary {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .rv-28-cart-section input[type=number]::-webkit-inner-spin-button {
+        opacity: 1;
+    }
+</style>
+
+{% endblock %}

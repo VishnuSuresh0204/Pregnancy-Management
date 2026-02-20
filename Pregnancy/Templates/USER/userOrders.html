@@ -1,0 +1,87 @@
+{% extends "USER/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">My Orders</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/userHome">Home</a></li>
+            <li class="current-page"><span class="dvdr"> / </span><span>My Orders</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle">
+                        <thead class="table-dark text-primary">
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr class="border-secondary">
+                                <td class="fw-bold text-white">#{{ order.id }}</td>
+                                <td>
+                                    <div class="d-flex flex-column gap-2">
+                                        {% for item in order.items.all %}
+                                        <div class="d-flex align-items-center gap-2">
+                                            {% if item.product.image %}
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                                                class="rounded"
+                                                style="width: 40px; height: 40px; object-fit: cover; border: 1px solid #444;">
+                                            {% endif %}
+                                            <div class="small text-white-50">
+                                                <span class="text-white">{{ item.product.name }}</span><br>
+                                                {{ item.quantity }} x ₹{{ item.price }}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="h5 text-primary">₹{{ order.total_amount }}</span>
+                                </td>
+                                <td>
+                                    <small class="text-white-50">{{ order.created_at|date:"M d, Y" }}</small><br>
+                                    <small class="text-white-50">{{ order.created_at|time:"H:i" }}</small>
+                                </td>
+                                <td>
+                                    {% if order.status == 'pending' %}
+                                    <span class="badge bg-warning text-dark px-3 py-2">Pending</span>
+                                    {% elif order.status == 'shipped' %}
+                                    <span class="badge bg-info text-dark px-3 py-2">Shipped</span>
+                                    {% elif order.status == 'delivered' %}
+                                    <span class="badge bg-success text-white px-3 py-2">Delivered</span>
+                                    {% elif order.status == 'cancelled' %}
+                                    <span class="badge bg-danger text-white px-3 py-2">Cancelled</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center py-5">
+                                    <div class="text-white-50 mb-3">You haven't placed any orders yet.</div>
+                                    <a href="/viewShops/" class="rv-28-book-btn">Start Shopping</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

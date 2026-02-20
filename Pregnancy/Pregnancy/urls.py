@@ -28,12 +28,14 @@ urlpatterns = [
     path('doctorHome/', views.doctorHome),
     path('user_reg/', views.user_reg),
     path('doctor_reg/', views.doctor_reg),
+    path('shop_reg/', views.shop_reg),
     path('login/', views.login),
     path('ad/', views.ad),
 
     # ADMIN
     path('view_user/', views.view_user),
     path('view_doctor/', views.view_doctor),
+    path('view_shops/', views.view_shops),
     path('admin_action/', views.admin_action),
     path('addVaccine/', views.addVaccine),
     path('vaccineList/', views.vaccineList),
@@ -47,6 +49,16 @@ urlpatterns = [
 
 
 # USER
+    path('viewShops/', views.viewShops),
+    path('viewShopProducts/', views.viewShopProducts),
+    path('addToCart/', views.addToCart),
+    path('viewCart/', views.viewCart),
+    path('updateCartQuantity/', views.updateCartQuantity),
+    path('removeFromCart/', views.removeFromCart),
+    path('checkout/', views.checkout),
+    path('processPayment/', views.processPayment),
+    path('userViewEvents/', views.userViewEvents),
+    path('userOrders/', views.userOrders),
     path('doctorView/', views.doctorView),
     path('appointment/', views.appointment),
     path('appointmentList/', views.appointmentList),
@@ -66,6 +78,19 @@ urlpatterns = [
     path('doctorDeleteTip/', views.doctorDeleteTip),
     path('doctorProfile/', views.doctorProfile),
     path('doctorUpdateProfile/', views.doctorUpdateProfile),
+
+# SHOP
+    path('shopHome/', views.shopHome),
+    path('addProduct/', views.addProduct),
+    path('editProduct/', views.editProduct),
+    path('deleteProduct/', views.deleteProduct),
+    path('shopProducts/', views.shopProducts),
+    path('addEvent/', views.addEvent),
+    path('editEvent/', views.editEvent),
+    path('deleteEvent/', views.deleteEvent),
+    path('shopEvents/', views.shopEvents),
+    path('shopOrders/', views.shopOrders),
+    path('updateOrderStatus/', views.updateOrderStatus),
 
 
 

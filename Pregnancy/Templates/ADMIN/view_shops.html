@@ -1,0 +1,63 @@
+{% extends "ADMIN/common.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Shops</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">Shop List</h2>
+        <div class="row">
+            {% for shop in shops %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    {% if shop.image %}
+                    <img src="{{ shop.image.url }}" class="card-img-top" alt="Shop Image"
+                        style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <img src="https://via.placeholder.com/250x250?text=No+Image" class="card-img-top" alt="No Image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shop.shop_name }}</h5>
+                        <p class="card-text">
+                            <strong>Owner:</strong> {{ shop.owner_name }}<br>
+                            <strong>Email:</strong> {{ shop.email }}<br>
+                            <strong>Phone:</strong> {{ shop.phone }}<br>
+                            <strong>Status:</strong> {{ shop.status|title }}<br>
+                            <strong>Address:</strong> {{ shop.address }}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-between px-3 pb-3">
+                        {% if shop.status == "shopApprove" %}
+                        <a href="/admin_action?id={{shop.id}}&action=shopBlock"
+                            class="btn btn-outline-danger w-100">Block</a>
+                        {% elif shop.status == "shopBlock" %}
+                        <a href="/admin_action?id={{shop.id}}&action=shopApprove"
+                            class="btn btn-outline-success w-100">Unblock</a>
+                        {% else %}
+                        <div class="btn-group w-100">
+                            <a href="/admin_action?id={{shop.id}}&action=shopApprove"
+                                class="btn btn-outline-success">Approve</a>
+                            <a href="/admin_action?id={{shop.id}}&action=shopReject"
+                                class="btn btn-outline-danger">Reject</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">No shops found.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

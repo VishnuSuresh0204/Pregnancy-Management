@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Dashboard - MindMed</title>
+    <link rel="shortcut icon" href="/static/assets/img/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/static/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/all.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/sharp-regular.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/sharp-solid.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/aos/aos.css">
+    <link rel="stylesheet" href="/static/assets/vendor/nice-select/nice-select.css">
+    <link rel="stylesheet" href="/static/assets/vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/venobox/venobox.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/DatePicker/jquery-ui.css">
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <div class="rv-28-wrapper">
+        <!-- header section start -->
+        <header class="rv-28-header">
+            <div class="rv-28-border-for-menu to-be-fixed" style="background-color: rgb(30, 37, 35);">
+                <div class="container">
+                    <div class="row">
+                        <div class="rv-28-menu">
+                            <div class="rv-28-logo">
+                                <a href="/shopHome">
+                                    <img src="/static/assets/img/2.png" alt="logo" style="width: 180px;">
+                                </a>
+                            </div>
+                            <div class="rv-28-menubar rv-1-header__nav">
+                                <ul class="rv-28-menubar__list">
+                                    <li><a href="/shopHome">Home</a></li>
+                                    <li><a href="#">Products</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/addProduct">Add Product</a></li>
+                                            <li><a href="/shopProducts">Manage Products</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Events</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="/addEvent">Add Event</a></li>
+                                            <li><a href="/shopEvents">Manage Events</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/shopOrders">View Orders</a></li>
+                                </ul>
+                            </div>
+                            <div class="rv-28-menu-BookNow">
+                                <a href="/" class="rv-28-book-btn">Logout
+                                    <i class="fa-light fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+        <footer class="rv-28-footer-sec">
+            <div class="container py-4 text-center text-white">
+                © MindMed Shop Portal. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- JS FILES -->
+    <script src="/static/assets/vendor/jquery/jquery-3.6.3.min.js"></script>
+    <script src="/static/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/assets/vendor/nice-select/jquery.nice-select.min.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/assets/js/rv-medical.js"></script>
+</body>
+
+</html>

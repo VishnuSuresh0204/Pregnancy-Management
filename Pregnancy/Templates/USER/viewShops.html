@@ -1,0 +1,97 @@
+{% extends "USER/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">Browse Shops</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/userHome">Home</a></li>
+            <li class="current-page"><span class="dvdr"> / </span><span>Shops</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5 rv-28-shops-section">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="text-white">Partner Shops</h2>
+            <p class="text-white-50">Explore our curated selection of specialized pregnancy and childcare stores.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for shop in shops %}
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div
+                    class="rv-28-shop-card bg-dark border border-secondary rounded overflow-hidden h-100 d-flex flex-column">
+                    <div class="rv-28-shop-img-wrapper position-relative overflow-hidden" style="height: 250px;">
+                        {% if shop.image %}
+                        <img src="{{ shop.image.url }}" alt="{{ shop.shop_name }}"
+                            class="w-100 h-100 object-fit-cover shop-img">
+                        {% else %}
+                        <div class="w-100 h-100 bg-secondary d-flex align-items-center justify-content-center">
+                            <i class="fa-light fa-store fa-4x text-white-50"></i>
+                        </div>
+                        {% endif %}
+                        <div class="img-overlay"></div>
+                    </div>
+
+                    <div class="rv-28-shop-content p-4 flex-grow-1 d-flex flex-column">
+                        <h4 class="shop-title text-white mb-2 h5">{{ shop.shop_name }}</h4>
+                        <div class="shop-location d-flex align-items-center gap-2 mb-4 text-white-50 small">
+                            <i class="fa-light fa-location-dot text-primary"></i>
+                            <span>{{ shop.address }}</span>
+                        </div>
+
+                        <div class="mt-auto">
+                            <a href="/viewShopProducts?id={{ shop.id }}"
+                                class="rv-28-book-btn w-100 text-center py-2 small">
+                                Browse Products <i class="fa-light fa-arrow-right-long ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <i class="fa-light fa-building-slash fa-4x text-white-50 mb-3"></i>
+                <h3 class="text-white">No Shops Available</h3>
+                <p class="text-white-50">Please check back later as we onboard more partners.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .rv-28-shop-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+    }
+
+    .rv-28-shop-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--rv-color-primary) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .shop-img {
+        transition: transform 0.6s ease;
+    }
+
+    .rv-28-shop-card:hover .shop-img {
+        transform: scale(1.1);
+    }
+
+    .img-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "SHOP/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">Manage Products</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/shopHome">Dashboard</a></li>
+            <li class="current-page"><span class="dvdr"> / </span><span>My Products</span></li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-white">Inventory Management</h2>
+            <a href="/addProduct" class="rv-28-book-btn">Add New Product</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-hover table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">Image</th>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                                style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                            {% else %}
+                            <div class="bg-secondary text-center rounded d-flex align-items-center justify-content-center"
+                                style="width: 60px; height: 60px;">
+                                <i class="fa-solid fa-image fa-2x opacity-25"></i>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>#{{ product.id }}</td>
+                        <td><strong>{{ product.name }}</strong></td>
+                        <td><small class="text-truncate d-inline-block" style="max-width: 250px;">{{ product.description
+                                }}</small></td>
+                        <td>₹{{ product.price }}</td>
+                        <td>
+                            <span
+                                class="badge {% if product.stock > 10 %}bg-success{% elif product.stock > 0 %}bg-warning{% else %}bg-danger{% endif %} text-dark">
+                                {{ product.stock }} in stock
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a href="/editProduct?id={{ product.id }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-edit"></i> Edit
+                                </a>
+                                <a href="/deleteProduct?id={{ product.id }}" class="btn btn-sm btn-outline-danger"
+                                    onclick="return confirm('Delete this product?')">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
+                            <p class="mb-0">No products added yet. Click "Add New Product" to get started.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

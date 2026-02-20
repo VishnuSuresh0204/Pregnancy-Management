@@ -16,6 +16,9 @@ def userHome(request):
 def doctorHome(request):
     return render(request, 'DOCTOR/index.html')
 
+def shopHome(request):
+    return render(request, 'SHOP/index.html')
+
 def ad(request):
     Login.objects.create(email="admin@gmail.com",password="admin@123",userType="Admin")
     return redirect("/")
@@ -82,6 +85,37 @@ def doctor_reg(request):
 
     return render(request, 'doctor_reg.html')
 
+def shop_reg(request):
+    if request.method == 'POST':
+        shop_name = request.POST["shop_name"]
+        owner_name = request.POST["owner_name"]
+        phone = request.POST["phone"]
+        email = request.POST["email"]
+        address = request.POST["address"]
+        password = request.POST["password"]
+        image = request.FILES.get("image")
+
+        if Login.objects.filter(email=email).exists():
+            messages.error(request, "Email already registered.")
+            return redirect('/shop_reg')
+
+        user = Login.objects.create(email=email, password=password, userType="Shop")
+
+        ShopReg.objects.create(
+            user=user,
+            shop_name=shop_name,
+            owner_name=owner_name,
+            phone=phone,
+            email=email,
+            address=address,
+            password=password,
+            image=image
+        )
+        messages.success(request, "Shop Registered Successfully! Waiting for Admin Approval.")
+        return redirect("/login")
+
+    return render(request, 'shop_reg.html')
+
 def login(request):
     if request.POST:
         email = request.POST.get("email")
@@ -118,6 +152,22 @@ def login(request):
                 messages.error(request, "Doctor profile not found.")
                 return redirect('/login/')
 
+        elif user.userType == "Shop":
+            shop = ShopReg.objects.filter(user=user, status="shopApprove").first()
+            if shop:
+                request.session['uid'] = shop.id
+                messages.success(request, "Login Successful")
+                return redirect('/shopHome/')
+            elif ShopReg.objects.filter(user=user, status="pending").exists():
+                messages.error(request, "Shop approval pending.")
+                return redirect('/login/')
+            elif ShopReg.objects.filter(user=user, status="shopBlock").exists():
+                messages.error(request, "Shop is blocked.")
+                return redirect('/login/')
+            else:
+                messages.error(request, "Shop profile not found or rejected.")
+                return redirect('/login/')
+
         else:
             messages.error(request, "Invalid user type.")
             return redirect('/login/')
@@ -134,6 +184,10 @@ def view_user(request):
 def view_doctor(request):
     doct = Doctor.objects.all()
     return render(request,"ADMIN/view_doctor.html",{'doct':doct})
+
+def view_shops(request):
+    shops = ShopReg.objects.all()
+    return render(request, "ADMIN/view_shops.html", {'shops': shops})
 
 def admin_action(request):
     id = request.GET.get("id")
@@ -159,6 +213,22 @@ def admin_action(request):
         client.status = "doctorBlock"
         client.save()
         return redirect("/view_doctor")
+
+    elif(action == "shopApprove"):
+        shop = ShopReg.objects.get(id = id)
+        shop.status = "shopApprove"
+        shop.save()
+        return redirect("/view_shops")
+    elif(action == "shopReject"):
+        shop = ShopReg.objects.get(id = id)
+        shop.status = "shopReject"
+        shop.save()
+        return redirect("/view_shops")
+    elif(action == "shopBlock"):
+        shop = ShopReg.objects.get(id = id)
+        shop.status = "shopBlock"
+        shop.save()
+        return redirect("/view_shops")
 
 def addVaccine(request):
     if request.POST:
@@ -392,3 +462,268 @@ def doctorUpdateProfile(request):
         
     return render(request, 'DOCTOR/editProfile.html', {'doctor': doctor})
 
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>     SHOP MANAGEMENT     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+def addProduct(request):
+    uid = request.session.get("uid")
+    shop = ShopReg.objects.get(id=uid)
+    if request.method == 'POST':
+        name = request.POST['name']
+        description = request.POST['description']
+        price = request.POST['price']
+        stock = request.POST['stock']
+        image = request.FILES.get('image')
+        
+        Product.objects.create(
+            shop=shop,
+            name=name,
+            description=description,
+            price=price,
+            stock=stock,
+            image=image
+        )
+        messages.success(request, "Product added successfully!")
+        return redirect('/shopProducts/')
+    return render(request, 'SHOP/addProduct.html')
+
+def editProduct(request):
+    id = request.GET.get("id")
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.name = request.POST['name']
+        product.description = request.POST['description']
+        product.price = request.POST['price']
+        product.stock = request.POST['stock']
+        if request.FILES.get('image'):
+            product.image = request.FILES.get('image')
+        product.save()
+        messages.success(request, "Product updated successfully!")
+        return redirect('/shopProducts/')
+    return render(request, 'SHOP/addProduct.html', {'product': product})
+
+def deleteProduct(request):
+    id = request.GET.get("id")
+    Product.objects.get(id=id).delete()
+    return redirect('/shopProducts/')
+
+def shopProducts(request):
+    uid = request.session.get("uid")
+    shop = ShopReg.objects.get(id=uid)
+    products = Product.objects.filter(shop=shop)
+    return render(request, 'SHOP/shopProducts.html', {'products': products})
+
+def addEvent(request):
+    uid = request.session.get("uid")
+    shop = ShopReg.objects.get(id=uid)
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        date = request.POST['date']
+        time = request.POST['time']
+        location = request.POST['location']
+        image = request.FILES.get('image')
+        
+        Event.objects.create(
+            shop=shop,
+            title=title,
+            description=description,
+            date=date,
+            time=time,
+            location=location,
+            image=image
+        )
+        messages.success(request, "Event created successfully!")
+        return redirect('/shopEvents/')
+    return render(request, 'SHOP/addEvent.html', {'today': datetime.now()})
+
+def editEvent(request):
+    id = request.GET.get("id")
+    event = Event.objects.get(id=id)
+    if request.method == 'POST':
+        event.title = request.POST['title']
+        event.description = request.POST['description']
+        event.date = request.POST['date']
+        event.time = request.POST['time']
+        event.location = request.POST['location']
+        if request.FILES.get('image'):
+            event.image = request.FILES.get('image')
+        event.save()
+        messages.success(request, "Event updated successfully!")
+        return redirect('/shopEvents/')
+    return render(request, 'SHOP/addEvent.html', {'event': event, 'today': datetime.now()})
+
+def deleteEvent(request):
+    id = request.GET.get("id")
+    Event.objects.get(id=id).delete()
+    return redirect('/shopEvents/')
+
+def shopEvents(request):
+    uid = request.session.get("uid")
+    shop = ShopReg.objects.get(id=uid)
+    events = Event.objects.filter(shop=shop)
+    return render(request, 'SHOP/shopEvents.html', {'events': events})
+
+def shopOrders(request):
+    uid = request.session.get("uid")
+    shop = ShopReg.objects.get(id=uid)
+    # Get orders that contain products from this shop
+    orders = Order.objects.filter(items__product__shop=shop).distinct().prefetch_related('items__product')
+    return render(request, 'SHOP/shopOrders.html', {'orders': orders})
+
+def updateOrderStatus(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        status = request.POST.get('status')
+        order = Order.objects.get(id=order_id)
+        order.status = status
+        order.save()
+        messages.success(request, f"Order #{order_id} status updated to {status}.")
+    return redirect('/shopOrders/')
+
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>     USER SHOPPING     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+def viewShops(request):
+    shops = ShopReg.objects.filter(status='shopApprove')
+    return render(request, 'USER/viewShops.html', {'shops': shops})
+
+def viewShopProducts(request):
+    shop_id = request.GET.get('id')
+    shop = ShopReg.objects.get(id=shop_id)
+    products = Product.objects.filter(shop=shop, stock__gt=0)
+    return render(request, 'USER/viewShopProducts.html', {'shop': shop, 'products': products})
+
+def addToCart(request):
+    if request.method == 'POST':
+        user_id = request.session.get('uid')
+        user = UserReg.objects.get(id=user_id)
+        product_id = request.POST.get('product_id')
+        quantity = int(request.POST.get('quantity', 1))
+        product = Product.objects.get(id=product_id)
+        
+        # Check stock before adding
+        if product.stock < quantity:
+            messages.error(request, f"Sorry, only {product.stock} items left in stock.")
+            return redirect(f'/viewShopProducts?id={product.shop.id}')
+
+        # Check if product is already in cart for this user
+        cart_item, created = Cart.objects.get_or_create(
+            user=user,
+            product=product,
+            defaults={'quantity': quantity}
+        )
+        
+        if not created:
+            # Check combined quantity against stock
+            if cart_item.quantity + quantity > product.stock:
+                messages.error(request, f"Cannot add more. You already have {cart_item.quantity} in cart and stock is {product.stock}.")
+            else:
+                cart_item.quantity += quantity
+                cart_item.save()
+                messages.success(request, f"Updated quantity for {product.name} in cart.")
+        else:
+            messages.success(request, f"Added {product.name} to cart.")
+            
+        return redirect(f'/viewShopProducts?id={product.shop.id}')
+    return redirect('/viewShops/')
+
+def viewCart(request):
+    user_id = request.session.get('uid')
+    user = UserReg.objects.get(id=user_id)
+    cart_items = Cart.objects.filter(user=user)
+    
+    total_amount = 0
+    total_items = 0
+    for item in cart_items:
+        item.subtotal = item.product.price * item.quantity
+        total_amount += item.subtotal
+        total_items += item.quantity
+        
+    return render(request, 'USER/viewCart.html', {
+        'cart_items': cart_items,
+        'total_amount': total_amount,
+        'total_items': total_items
+    })
+
+def updateCartQuantity(request):
+    if request.method == 'POST':
+        cart_id = request.POST.get('cart_id')
+        quantity = int(request.POST.get('quantity'))
+        cart_item = Cart.objects.get(id=cart_id)
+        
+        if quantity > cart_item.product.stock:
+            messages.error(request, f"Only {cart_item.product.stock} items available in stock.")
+        else:
+            cart_item.quantity = quantity
+            cart_item.save()
+            messages.success(request, "Cart updated.")
+            
+    return redirect('/viewCart/')
+
+def removeFromCart(request):
+    cart_id = request.GET.get('id')
+    Cart.objects.get(id=cart_id).delete()
+    messages.success(request, "Item removed from cart.")
+    return redirect('/viewCart/')
+
+def checkout(request):
+    user_id = request.session.get('uid')
+    user = UserReg.objects.get(id=user_id)
+    cart_items = Cart.objects.filter(user=user)
+    
+    total_amount = sum(item.product.price * item.quantity for item in cart_items)
+    if total_amount == 0:
+        return redirect('/viewCart/')
+        
+    return render(request, 'USER/payment.html', {'total_amount': total_amount})
+
+def processPayment(request):
+    if request.method == 'POST':
+        user_id = request.session.get('uid')
+        user_reg = UserReg.objects.get(id=user_id)
+        total_amount = request.POST.get('total_amount')
+        # Get cart items
+        cart_items = Cart.objects.filter(user=user_reg)
+        
+        # 1. Final Stock Check before processing
+        for item in cart_items:
+            if item.quantity > item.product.stock:
+                messages.error(request, f"Sorry, {item.product.name} is no longer available in the requested quantity.")
+                return redirect('/viewCart/')
+
+        # 2. Create Order
+        order = Order.objects.create(
+            user=user_reg,
+            total_amount=total_amount,
+            status='pending'
+        )
+        
+        # 3. Create OrderItems and reduce stock
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=item.product,
+                quantity=item.quantity,
+                price=item.product.price
+            )
+            # Reduce stock
+            item.product.stock -= item.quantity
+            item.product.save()
+            
+        # Clear Cart
+        cart_items.delete()
+        
+        messages.success(request, "Payment successful! Your order has been placed.")
+        return redirect('/userHome/')
+    return redirect('/viewCart/')
+
+def userViewEvents(request):
+    events = Event.objects.filter(shop__status='shopApprove').order_by('date', 'time')
+    return render(request, 'USER/userViewEvents.html', {'events': events})
+
+def userOrders(request):
+    user_id = request.session.get('uid')
+    user = UserReg.objects.get(id=user_id)
+    orders = Order.objects.filter(user=user).order_by('-created_at')
+    return render(request, 'USER/userOrders.html', {'orders': orders})

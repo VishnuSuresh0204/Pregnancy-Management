@@ -1,0 +1,53 @@
+{% extends "SHOP/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">Shop Dashboard</h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li>
+                <a href="/shopHome"><i class="fa-solid fa-home"></i> Dashboard</a>
+            </li>
+            <li class="current-page">
+                <span class="dvdr"> / </span><span>Welcome</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 p-5">
+                    <h2 class="mb-4">Welcome back, Shop Owner!</h2>
+                    <p class="lead mb-4">Manage your products, events, and track your orders from this dashboard.</p>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <a href="/addProduct" class="btn btn-outline-primary w-100 p-3">
+                                <i class="fa-solid fa-plus-circle mb-2 d-block fa-2x"></i>
+                                Add Product
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="/addEvent" class="btn btn-outline-success w-100 p-3">
+                                <i class="fa-solid fa-calendar-plus mb-2 d-block fa-2x"></i>
+                                Add Event
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="/shopOrders" class="btn btn-outline-info w-100 p-3">
+                                <i class="fa-solid fa-shopping-bag mb-2 d-block fa-2x"></i>
+                                View Orders
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

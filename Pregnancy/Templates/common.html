@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,105 +20,111 @@
 
 <body>
 
-<!-- Django Messages -->
-{% if messages %}
-<div class="container mt-3">
-    {% for message in messages %}
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
-
-<!-- Cursor -->
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
-
-<div class="rv-28-wrapper">
-
-<!-- HEADER -->
-<header class="rv-28-header">
-    <div class="rv-28-border-for-menu to-be-fixed" style="background-color:#1e2523;">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="/">
-                    <img src="/static/assets/img/2.png" alt="MindMed Logo" style="width:180px;">
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-                    <ul class="navbar-nav align-items-center gap-3">
-                        <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="/doctor_reg/">Doctor Register</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="/user_reg/">User Register</a></li>
-                        <li class="nav-item">
-                            <a href="/login/" class="rv-28-book-btn">Login
-                                <i class="fa-light fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    <!-- Django Messages -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
+        {% endfor %}
     </div>
-</header>
+    {% endif %}
 
-<!-- PAGE CONTENT -->
-{% block content %}
-{% endblock %}
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-<!-- FOOTER -->
-<footer class="rv-28-footer-sec">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <img src="/static/assets/img/logo-white-2.png" alt="logo">
-                <p class="text-white mt-3">
-                    Morbi pharetra, eros sed euismod pellentesque, nulla risus lobortis purus.
-                </p>
-                <a href="tel:+23525521215" class="text-white">
-                    <i class="fa fa-phone"></i> +235 25521 215
-                </a>
-            </div>
+    <div class="rv-28-wrapper">
 
-            <div class="col-lg-4">
-                <h4 class="text-white">Departments</h4>
-                <ul class="list-unstyled">
-                    <li><a href="#">Emergency</a></li>
-                    <li><a href="#">Orthopedics</a></li>
-                    <li><a href="#">Neurosciences</a></li>
-                </ul>
-            </div>
+        <!-- HEADER -->
+        <header class="rv-28-header">
+            <div class="rv-28-border-for-menu to-be-fixed" style="background-color:#1e2523;">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="/">
+                            <img src="/static/assets/img/2.png" alt="MindMed Logo" style="width:180px;">
+                        </a>
 
-            <div class="col-lg-4">
-                <h4 class="text-white">Follow Us</h4>
-                <div class="d-flex gap-3">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#mainNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+                            <ul class="navbar-nav align-items-center gap-3">
+                                <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link text-white" href="/doctor_reg/">Doctor
+                                        Register</a></li>
+                                <li class="nav-item"><a class="nav-link text-white" href="/shop_reg/">Shop Register</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link text-white" href="/user_reg/">User Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/login/" class="rv-28-book-btn">Login
+                                        <i class="fa-light fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <div class="text-center text-white mt-4">
-            © MindMed. All Rights Reserved.
-        </div>
+        <!-- PAGE CONTENT -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- FOOTER -->
+        <footer class="rv-28-footer-sec">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <img src="/static/assets/img/logo-white-2.png" alt="logo">
+                        <p class="text-white mt-3">
+                            Morbi pharetra, eros sed euismod pellentesque, nulla risus lobortis purus.
+                        </p>
+                        <a href="tel:+23525521215" class="text-white">
+                            <i class="fa fa-phone"></i> +235 25521 215
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <h4 class="text-white">Departments</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Emergency</a></li>
+                            <li><a href="#">Orthopedics</a></li>
+                            <li><a href="#">Neurosciences</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <h4 class="text-white">Follow Us</h4>
+                        <div class="d-flex gap-3">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center text-white mt-4">
+                    © MindMed. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+
     </div>
-</footer>
 
-</div>
-
-<!-- JS -->
-<script src="/static/assets/vendor/jquery/jquery-3.6.3.min.js"></script>
-<script src="/static/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="/static/assets/js/main.js"></script>
-<script src="/static/assets/js/rv-medical.js"></script>
+    <!-- JS -->
+    <script src="/static/assets/vendor/jquery/jquery-3.6.3.min.js"></script>
+    <script src="/static/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/assets/js/rv-medical.js"></script>
 
 </body>
+
 </html>

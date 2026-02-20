@@ -1,0 +1,103 @@
+{% extends "SHOP/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">
+            {% if event %}Edit{% else %}Add{% endif %} Event
+        </h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/shopHome">Dashboard</a></li>
+            <li class="current-page">
+                <span class="dvdr"> / </span>
+                <span>{% if event %}Edit{% else %}Add{% endif %} Event</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 auth-container">
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <input type="text"
+                               name="title"
+                               value="{{ event.title }}"
+                               placeholder="Event Title"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <textarea name="description"
+                                  placeholder="Description"
+                                  rows="4"
+                                  class="form-control"
+                                  required>{{ event.description }}</textarea>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white">Date</label>
+                            <input type="date"
+                                   name="date"
+                                   value="{{ event.date|date:'Y-m-d' }}"
+                                   class="form-control"
+                                   required
+                                   min="{{ today|date:'Y-m-d' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white">Time</label>
+                            <input type="time"
+                                   name="time"
+                                   value="{{ event.time|time:'H:i' }}"
+                                   class="form-control"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text"
+                               name="location"
+                               value="{{ event.location }}"
+                               placeholder="Location"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white">Event Poster / Image</label>
+
+                        <!-- ✅ FIXED LINE -->
+                        <input type="file"
+                               name="image"
+                               accept="image/*"
+                               class="form-control"
+                               {% if not event %}required{% endif %}>
+
+                        {% if event and event.image %}
+                            <small class="text-white">
+                                Current image: {{ event.image.name }}
+                            </small>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn w-100">
+                        {% if event %}Update{% else %}Create{% endif %} Event
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

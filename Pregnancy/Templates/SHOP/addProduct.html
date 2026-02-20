@@ -1,0 +1,80 @@
+{% extends "SHOP/common.html" %}
+{% block content %}
+
+<!-- BREADCRUMB START -->
+<div class="rv-breadcrumb pt-120 pb-120">
+    <div class="container text-center">
+        <h1 class="rv-breadcrumb__title">
+            {% if product %}Edit{% else %}Add{% endif %} Product
+        </h1>
+        <ul class="rv-breadcrumb__nav d-flex justify-content-center">
+            <li><a href="/shopHome">Dashboard</a></li>
+            <li class="current-page">
+                <span class="dvdr"> / </span>
+                <span>{% if product %}Edit{% else %}Add{% endif %} Product</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- BREADCRUMB END -->
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 auth-container">
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label text-white">Product Name</label>
+                        <input type="text" name="name" value="{{ product.name }}" placeholder="Product Name"
+                            class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white">Description</label>
+                        <textarea name="description" placeholder="Description" rows="4" class="form-control"
+                            required>{% if product %}{{ product.description }}{% endif %}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white">Price (₹)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₹</span>
+                            <input type="number" name="price" value="{{ product.price }}" step="0.01"
+                                placeholder="Price" class="form-control" required min="0.01">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white">Stock Quantity</label>
+                        <input type="number" name="stock" value="{{ product.stock }}" placeholder="Stock Quantity"
+                            class="form-control" required min="0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white">Product Image</label>
+                        {% if product %}
+                        <input type="file" name="image" accept="image/*" class="form-control">
+                        {% else %}
+                        <input type="file" name="image" accept="image/*" class="form-control" required>
+                        {% endif %}
+
+                        {% if product and product.image %}
+                        <small class="text-white d-block mt-1">Current image: {{ product.image.name }}</small>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="rv-1-banner-btn single-form-btn w-100">
+                        {% if product %}Update{% else %}Add{% endif %} Product
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
