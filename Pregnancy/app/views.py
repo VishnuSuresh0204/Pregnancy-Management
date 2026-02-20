@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from. models import*
 from django.contrib import messages
-from datetime import datetime
+from datetime import datetime, date
 
 # Create your views here.
 def home(request):
@@ -347,8 +347,15 @@ def appointment(request):
 
 def appointmentList(request):
     uid = request.session.get("uid")
-    appointments = Appointment.objects.filter(logId=uid)
+    today = date.today()
+    appointments = Appointment.objects.filter(logId=uid, date__gte=today).order_by('date', 'time')
     return render(request, 'USER/appointmentList.html', {'appointments': appointments})
+
+def appointmentHistory(request):
+    uid = request.session.get("uid")
+    today = date.today()
+    appointments = Appointment.objects.filter(logId=uid, date__lt=today).order_by('-date', '-time')
+    return render(request, 'USER/appointmentHistory.html', {'appointments': appointments})
 
 def userViewTips(request):
     category = request.GET.get('category', 'health')
@@ -719,8 +726,14 @@ def processPayment(request):
     return redirect('/viewCart/')
 
 def userViewEvents(request):
-    events = Event.objects.filter(shop__status='shopApprove').order_by('date', 'time')
+    today = date.today()
+    events = Event.objects.filter(shop__status='shopApprove', date__gte=today).order_by('date', 'time')
     return render(request, 'USER/userViewEvents.html', {'events': events})
+
+def eventHistory(request):
+    today = date.today()
+    events = Event.objects.filter(shop__status='shopApprove', date__lt=today).order_by('-date', '-time')
+    return render(request, 'USER/eventHistory.html', {'events': events})
 
 def userOrders(request):
     user_id = request.session.get('uid')
