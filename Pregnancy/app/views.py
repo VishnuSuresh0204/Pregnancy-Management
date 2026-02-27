@@ -143,11 +143,21 @@ def login(request):
 
 
         elif user.userType == "Doctor":
-            doct = Doctor.objects.filter(user=user,status="doctorApprove").first()
-            if doct:
-                request.session['uid'] = doct.id  
-                messages.success(request, "Login Successful")
-                return redirect('/doctorHome/')
+            doctor = Doctor.objects.filter(user=user).first()
+            if doctor:
+                if doctor.status == "doctorApprove":
+                    request.session['uid'] = doctor.id
+                    messages.success(request, "Login Successful")
+                    return redirect('/doctorHome/')
+                elif doctor.status == "pending":
+                    messages.error(request, "Your account is pending admin approval.")
+                elif doctor.status == "doctorBlock":
+                    messages.error(request, "Your account has been blocked by the admin.")
+                elif doctor.status == "doctorReject":
+                    messages.error(request, "Your account registration has been rejected.")
+                else:
+                    messages.error(request, "Your account is not active.")
+                return redirect('/login/')
             else:
                 messages.error(request, "Doctor profile not found.")
                 return redirect('/login/')
@@ -208,9 +218,19 @@ def admin_action(request):
         client.status = "doctorApprove"
         client.save()
         return redirect("/view_doctor")
+    elif(action == "doctorReject"):
+        client = Doctor.objects.get(id = id)
+        client.status = "doctorReject"
+        client.save()
+        return redirect("/view_doctor")
     elif(action == "doctorBlock"):
         client = Doctor.objects.get(id = id)
         client.status = "doctorBlock"
+        client.save()
+        return redirect("/view_doctor")
+    elif(action == "doctorUnblock"):
+        client = Doctor.objects.get(id = id)
+        client.status = "doctorApprove"
         client.save()
         return redirect("/view_doctor")
 
@@ -316,7 +336,7 @@ def deleteBabySong(request):
 #.................... USER  .....................................
 
 def doctorView(request):
-    doct = Doctor.objects.all()
+    doct = Doctor.objects.filter(status='doctorApprove')
     return render(request, 'USER/doctor.html', {'doct': doct})
 
 def appointment(request):
